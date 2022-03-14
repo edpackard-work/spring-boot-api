@@ -1,7 +1,19 @@
 Spring Boot API
 
-A simple Spring Boot API
+A simple Spring Boot REST API.
 
 To run, ensure you have Java installed, clone this repo and run:
 
 `./mvnw spring-boot:run`
+
+Then:
+
+`open http://localhost:8080/message`
+
+Current routes:
+
+GET ALL: `localhost:8080/message`
+
+GET BY ID: `localhost:8080/message/:id`
+
+POST: `localhost:8080/message` with JSON body `{ "content": "your message here" }`

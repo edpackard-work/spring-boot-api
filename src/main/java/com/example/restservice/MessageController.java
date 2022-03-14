@@ -12,7 +12,7 @@ public class MessageController {
     private final ArrayList<Message> data = new ArrayList<>();
 
     // Create Route
-    @PostMapping(path = "greeting", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "message", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createMessage(@RequestBody Message requestBody) {
         counter.incrementCount();
         Message newMessage = new Message(counter.getCount(), requestBody.getContent());
@@ -20,13 +20,13 @@ public class MessageController {
     }
 
     // Read (all) Route
-    @GetMapping("/greeting")
+    @GetMapping("/message")
     public ArrayList<Message> getAllData() {
         return data;
     }
 
     // Read (by ID) Route
-    @GetMapping("/greeting/{id}")
+    @GetMapping("/message/{id}")
     public Optional<Message> showId(@PathVariable String id) {
         long intId = Integer.parseInt(id);
         return data.stream().filter(message -> message.getId() == intId).findFirst();
