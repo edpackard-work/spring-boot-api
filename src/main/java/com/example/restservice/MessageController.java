@@ -2,29 +2,29 @@ package com.example.restservice;
 
 import java.util.ArrayList;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class MessageController {
     private final Counter counter = new Counter();
     private final ArrayList<Message> data = new ArrayList<>();
 
-    @GetMapping("/greeting")
-    public Message greeting(@RequestParam(value = "message", defaultValue = "Hello World!") String message) {
+    // Create Route
+    @PostMapping(path = "greeting", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createMessage(@RequestBody Message requestBody) {
         counter.incrementCount();
-        Message newMessage =  new Message(counter.getCount(), message);
+        Message newMessage = new Message(counter.getCount(), requestBody.getContent());
         data.add(newMessage);
-        return newMessage;
     }
 
-    @GetMapping("/greeting/all")
+    // Read (all) Route
+    @GetMapping("/greeting")
     public ArrayList<Message> getAllData() {
         return data;
     }
 
+    // TODO: Read (by ID) Route
     @GetMapping("/greeting/{id}")
     public String showId(@PathVariable String id) {
         return String.format("ID is %s", id);
