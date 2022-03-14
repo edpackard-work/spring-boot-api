@@ -1,6 +1,7 @@
 package com.example.restservice;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +25,10 @@ public class MessageController {
         return data;
     }
 
-    // TODO: Read (by ID) Route
+    // Read (by ID) Route
     @GetMapping("/greeting/{id}")
-    public String showId(@PathVariable String id) {
-        return String.format("ID is %s", id);
+    public Optional<Message> showId(@PathVariable String id) {
+        long intId = Integer.parseInt(id);
+        return data.stream().filter(message -> message.getId() == intId).findFirst();
     }
 }
