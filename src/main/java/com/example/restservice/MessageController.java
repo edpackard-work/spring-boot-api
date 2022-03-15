@@ -34,18 +34,18 @@ public class MessageController {
     // Update (by ID) Route
     @PutMapping("/message/{id}")
     public void updateMessage (@RequestBody Message requestBody, @PathVariable long id) {
-        for (int i = 0; i < data.size(); i++) {
-            if (data.get(i).getId() == id) {
-                data.remove(i);
-                Message newMessage = new Message(id, requestBody.getContent());
-                data.add(newMessage);
-                break;
-            }
-        }
+        deleteById(id);
+        Message newMessage = new Message(id, requestBody.getContent());
+        data.add(newMessage);
     }
 
+    // Delete (by ID) Route
     @DeleteMapping("/message/{id}")
     public void deleteMessage (@PathVariable long id) {
+        deleteById(id);
+    }
+
+    private void deleteById( long id) {
         for (int i = 0; i < data.size(); i++) {
             if (data.get(i).getId() == id) {
                 data.remove(i);
