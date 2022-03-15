@@ -3,7 +3,7 @@ package com.example.restservice;
 public class Message {
 
     private final long id;
-    private final String content;
+    private String content;
 
     public Message(long id, String content) {
         this.id = id;
@@ -16,5 +16,9 @@ public class Message {
 
     public String getContent() {
         return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

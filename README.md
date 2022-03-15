@@ -17,3 +17,5 @@ GET ALL: `localhost:8080/message`
 GET BY ID: `localhost:8080/message/:id`
 
 POST: `localhost:8080/message` with JSON body `{ "content": "your message here" }`
+
+PUT: `localhost:8080/message/:id` with JSON body `{ "content": "your updated content here" }`
