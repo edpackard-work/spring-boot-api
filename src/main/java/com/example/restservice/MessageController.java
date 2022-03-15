@@ -27,9 +27,8 @@ public class MessageController {
 
     // Read (by ID) Route
     @GetMapping("/message/{id}")
-    public Optional<Message> showId(@PathVariable String id) {
-        long intId = Integer.parseInt(id);
-        return data.stream().filter(message -> message.getId() == intId).findFirst();
+    public Optional<Message> showId(@PathVariable long id) {
+        return data.stream().filter(message -> message.getId() == id).findFirst();
     }
 
     // Update (by ID) Route
@@ -40,6 +39,16 @@ public class MessageController {
                 data.remove(i);
                 Message newMessage = new Message(id, requestBody.getContent());
                 data.add(newMessage);
+                break;
+            }
+        }
+    }
+
+    @DeleteMapping("/message/{id}")
+    public void deleteMessage (@PathVariable long id) {
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i).getId() == id) {
+                data.remove(i);
                 break;
             }
         }
