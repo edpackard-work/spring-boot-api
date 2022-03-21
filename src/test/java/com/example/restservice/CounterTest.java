@@ -1,5 +1,6 @@
 package com.example.restservice;
 
+import com.example.restservice.util.Counter;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

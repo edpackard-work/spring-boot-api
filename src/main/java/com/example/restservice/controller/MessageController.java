@@ -1,8 +1,10 @@
-package com.example.restservice;
+package com.example.restservice.controller;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
+import com.example.restservice.domain.Message;
+import com.example.restservice.util.Counter;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.web.bind.annotation.*;
 
